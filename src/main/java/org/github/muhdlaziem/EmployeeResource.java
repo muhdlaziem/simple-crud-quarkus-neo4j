@@ -112,7 +112,7 @@ public class EmployeeResource {
                 .thenApply(signal -> Response.noContent().build());
     }
 
-    @PUT
+    @PATCH
     @Path("{id}")
     public CompletionStage<Response> updateName(@PathParam("id") Long id, Employee employee) {
         /*

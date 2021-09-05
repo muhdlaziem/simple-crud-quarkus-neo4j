@@ -59,6 +59,33 @@
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-resteasy-mutiny</artifactId>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.neo4j/neo4j-ogm-core -->
+    <dependency>
+      <groupId>org.neo4j</groupId>
+      <artifactId>neo4j-ogm-core</artifactId>
+      <version>3.2.25</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.neo4j/neo4j-ogm-bolt-driver -->
+    <dependency>
+      <groupId>org.neo4j</groupId>
+      <artifactId>neo4j-ogm-bolt-driver</artifactId>
+      <version>3.2.25</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.neo4j/neo4j-ogm-bolt-native-types -->
+    <dependency>
+      <groupId>org.neo4j</groupId>
+      <artifactId>neo4j-ogm-bolt-native-types</artifactId>
+      <version>3.2.25</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-resteasy-jsonb</artifactId>
+    </dependency>
+
   </dependencies>
   <build>
     <plugins>

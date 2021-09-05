@@ -1,5 +1,38 @@
 # simple-crud-quarkus-neo4j Project
 
+## How to use?
+
+1. Run docker container for neo4j by running `./run-neo4j.sh`
+2. Init Pokemon DB by running `cypher-shell -u neo4j -p test --file data_init.cypher -a "neo4j://localhost:7687"`
+   1. If you don't have `cypher-shell`, alternatively open Neo4j DashBoard: `http://localhost:7474` and then copy and paste the content of `data_init.cypher` file
+3. Run Quarkus in Dev mode `./mvnw compile quarkus:dev`
+4. Start accessing the REST API.
+
+## Example
+```bash
+# Get all Pokemons
+curl "localhost:8080/ogm/pokemons/"
+
+# Get all Pokemons that have Dark type
+curl "localhost:8080/ogm/pokemons/?type=Dark"
+
+# Get all Pokemons that originally from Galar region
+curl "localhost:8080/ogm/pokemons/?region=Galar" 
+
+# Create Pokemon Lucario
+curl -v -X "POST" "http://localhost:8080/ogm/pokemons/" \
+-H 'Content-Type: application/json; charset=utf-8' \
+-d $'{"name": "Lucario", "region": "Sinnoh", "types": ["Steel","Fighting"]}'
+
+# Update type Lucario to only fighting
+curl -v -X "PATCH" "http://localhost:8080/ogm/pokemons/Lucario" \
+-H 'Content-Type: application/json; charset=utf-8' \
+-d $'{"types": ["Fighting"]}'
+
+# Delete Lucario node
+curl -v -X "DELETE" "localhost:8080/ogm/pokemons/Lucario"
+```
+
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
