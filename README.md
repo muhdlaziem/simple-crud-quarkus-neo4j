@@ -10,6 +10,27 @@
 
 ## Example
 ```bash
+# get all Employees
+curl -v localhost:8080/employees/
+
+# Create Employee
+curl -v -X "POST" "http://localhost:8080/employees" \
+  -H 'Content-Type: application/json; charset=utf-8' \
+  -d $'{"name": "Myname", "title": "Data Science Intern", "started_in": "2020"}'
+  
+# Get Specific Employee
+curl localhost:8080/employees/80 
+
+# Update Employee
+curl -v -X "PATCH" "http://localhost:8080/employees/80" \
+  -H 'Content-Type: application/json; charset=utf-8' \
+  -d $'{"name": "Ahmad", "title": "Software Engineer"}'
+
+# Delete Employee
+curl -X "DELETE" "http://localhost:8080/employees/80"
+
+--
+
 # Get all Pokemons
 curl "localhost:8080/ogm/pokemons/"
 
@@ -21,13 +42,13 @@ curl "localhost:8080/ogm/pokemons/?region=Galar"
 
 # Create Pokemon Lucario
 curl -v -X "POST" "http://localhost:8080/ogm/pokemons/" \
--H 'Content-Type: application/json; charset=utf-8' \
--d $'{"name": "Lucario", "region": "Sinnoh", "types": ["Steel","Fighting"]}'
+  -H 'Content-Type: application/json; charset=utf-8' \
+  -d $'{"name": "Lucario", "region": "Sinnoh", "types": ["Steel","Fighting"]}'
 
 # Update type Lucario to only fighting
 curl -v -X "PATCH" "http://localhost:8080/ogm/pokemons/Lucario" \
--H 'Content-Type: application/json; charset=utf-8' \
--d $'{"types": ["Fighting"]}'
+  -H 'Content-Type: application/json; charset=utf-8' \
+  -d $'{"types": ["Fighting"]}'
 
 # Delete Lucario node
 curl -v -X "DELETE" "localhost:8080/ogm/pokemons/Lucario"

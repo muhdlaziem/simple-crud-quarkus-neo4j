@@ -17,6 +17,9 @@ import org.neo4j.driver.exceptions.NoSuchRecordException;
 
 @Path("employees")
 public class EmployeeResource {
+    /*
+        https://quarkus.io/guides/neo4j
+     */
 
     @Inject
     Driver driver;
@@ -24,7 +27,7 @@ public class EmployeeResource {
     @GET
     public CompletionStage<Response> get() {
         /*
-        *   curl -v localhost:8080/employees/
+            curl -v localhost:8080/employees/
          */
         AsyncSession session = driver.asyncSession(); // <1> Open a new, asynchronous session with Neo4j
         return session
@@ -43,11 +46,10 @@ public class EmployeeResource {
     public CompletionStage<Response> create(Employee employee) {
 
         /*
-        * curl -v -X "POST" "http://localhost:8080/employees" \                                                                                                         ✔
-        *      -H 'Content-Type: application/json; charset=utf-8' \
-        *      -d $'{"name": "Myname", "title": "Data Science Intern", "started_in": "2020"}'
-        *
-        * */
+            curl -v -X "POST" "http://localhost:8080/employees" \                                                                                                         ✔
+              -H 'Content-Type: application/json; charset=utf-8' \
+              -d $'{"name": "Myname", "title": "Data Science Intern", "started_in": "2020"}'
+         */
         AsyncSession session = driver.asyncSession();
         return session
                 .writeTransactionAsync(tx -> tx
@@ -69,7 +71,7 @@ public class EmployeeResource {
     @Path("{id}")
     public CompletionStage<Response> getSingle(@PathParam("id") Long id) {
         /*
-         *  curl -v localhost:8080/employees/2
+            curl -v localhost:8080/employees/2
          */
         AsyncSession session = driver.asyncSession();
         return session
@@ -99,8 +101,8 @@ public class EmployeeResource {
     @Path("{id}")
     public CompletionStage<Response> delete(@PathParam("id") Long id) {
         /*
-        *  curl -v -X DELETE localhost:8080/employees/2
-        * */
+            curl -v -X DELETE localhost:8080/employees/2
+        */
 
         AsyncSession session = driver.asyncSession();
         return session
@@ -116,7 +118,9 @@ public class EmployeeResource {
     @Path("{id}")
     public CompletionStage<Response> updateName(@PathParam("id") Long id, Employee employee) {
         /*
-         *  curl -v -X PUT localhost:8080/employees/2
+         curl -v -X "PATCH" "http://localhost:8080/employees/80" \
+          -H 'Content-Type: application/json; charset=utf-8' \
+          -d $'{"name": "Ahmad", "title": "Software Engineer"}'
          */
         System.out.println(id+" "+employee.name + " "+ employee.title);
         AsyncSession session = driver.asyncSession();

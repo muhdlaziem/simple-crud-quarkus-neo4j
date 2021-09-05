@@ -131,6 +131,10 @@ UNWIND row.type AS type
 MATCH (t: Type {name: type.type})
 MERGE (p)-[:IS_TYPE]->(t);
 
+// For Employee Example
+CREATE (Laziem: Employee {name:'Laziem', title: 'Junior AI Engineer', started_in: 2020})
+CREATE (Hazim: Employee {name:'Hazim', title: 'AI Software Engineer', started_in: 2020});
+
 // Add some constraints
 CREATE CONSTRAINT ON (node:Pokemon) ASSERT (node.name) IS UNIQUE;
 CREATE CONSTRAINT ON (node:Origin) ASSERT (node.region) IS UNIQUE;
