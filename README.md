@@ -14,20 +14,20 @@
 curl -v localhost:8080/employees/
 
 # Create Employee
-curl -v -X "POST" "http://localhost:8080/employees" \
+curl -v -X "POST" "http://localhost:8080/driver/employees" \
   -H 'Content-Type: application/json; charset=utf-8' \
   -d $'{"name": "Myname", "title": "Data Science Intern", "started_in": "2020"}'
   
 # Get Specific Employee
-curl localhost:8080/employees/80 
+curl localhost:8080/driver/employees/80 
 
 # Update Employee
-curl -v -X "PATCH" "http://localhost:8080/employees/80" \
+curl -v -X "PATCH" "http://localhost:8080/driver/employees/80" \
   -H 'Content-Type: application/json; charset=utf-8' \
   -d $'{"name": "Ahmad", "title": "Software Engineer"}'
 
 # Delete Employee
-curl -X "DELETE" "http://localhost:8080/employees/80"
+curl -X "DELETE" "http://localhost:8080/driver/employees/80"
 
 --
 

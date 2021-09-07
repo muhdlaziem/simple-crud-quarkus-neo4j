@@ -1,4 +1,4 @@
-package org.github.muhdlaziem;
+package org.github.muhdlaziem.driver;
 
 //CREATE (Laziem: Employee {name:'Laziem', title: 'Junior AI Engineer', started_in: 2020})
 

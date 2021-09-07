@@ -1,4 +1,4 @@
-package org.github.muhdlaziem;
+package org.github.muhdlaziem.driver;
 
 import java.net.URI;
 import java.util.concurrent.CompletionException;
@@ -6,7 +6,6 @@ import java.util.concurrent.CompletionStage;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
@@ -15,7 +14,7 @@ import org.neo4j.driver.Values;
 import org.neo4j.driver.async.AsyncSession;
 import org.neo4j.driver.exceptions.NoSuchRecordException;
 
-@Path("employees")
+@Path("/driver/employees")
 public class EmployeeResource {
     /*
         https://quarkus.io/guides/neo4j
@@ -27,7 +26,7 @@ public class EmployeeResource {
     @GET
     public CompletionStage<Response> get() {
         /*
-            curl -v localhost:8080/employees/
+            curl -v localhost:8080/driver/employees/
          */
         AsyncSession session = driver.asyncSession(); // <1> Open a new, asynchronous session with Neo4j
         return session
@@ -46,7 +45,7 @@ public class EmployeeResource {
     public CompletionStage<Response> create(Employee employee) {
 
         /*
-            curl -v -X "POST" "http://localhost:8080/employees" \                                                                                                         ✔
+            curl -v -X "POST" "http://localhost:8080/driver/employees" \                                                                                                         ✔
               -H 'Content-Type: application/json; charset=utf-8' \
               -d $'{"name": "Myname", "title": "Data Science Intern", "started_in": "2020"}'
          */
@@ -71,7 +70,7 @@ public class EmployeeResource {
     @Path("{id}")
     public CompletionStage<Response> getSingle(@PathParam("id") Long id) {
         /*
-            curl -v localhost:8080/employees/2
+            curl -v localhost:8080/driver/employees/2
          */
         AsyncSession session = driver.asyncSession();
         return session
@@ -101,7 +100,7 @@ public class EmployeeResource {
     @Path("{id}")
     public CompletionStage<Response> delete(@PathParam("id") Long id) {
         /*
-            curl -v -X DELETE localhost:8080/employees/2
+            curl -v -X DELETE localhost:8080/driver/employees/2
         */
 
         AsyncSession session = driver.asyncSession();
@@ -118,7 +117,7 @@ public class EmployeeResource {
     @Path("{id}")
     public CompletionStage<Response> updateName(@PathParam("id") Long id, Employee employee) {
         /*
-         curl -v -X "PATCH" "http://localhost:8080/employees/80" \
+         curl -v -X "PATCH" "http://localhost:8080/driver/employees/80" \
           -H 'Content-Type: application/json; charset=utf-8' \
           -d $'{"name": "Ahmad", "title": "Software Engineer"}'
          */
