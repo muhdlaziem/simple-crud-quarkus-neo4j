@@ -45,7 +45,7 @@ public class Pokemons {
     public List<Pokemon> getPokemonSpecificRegion(String region) {
         Session session = sessionFactory.openSession();
 
-        Iterable<Pokemon> result = session.query(Pokemon.class, "MATCH (p: Pokemon)-[:IS_FROM]->(:Origin {region: $region})\n" +
+        Iterable<Pokemon> result = session.query(Pokemon.class, "MATCH (p: Pokemon)-[:IS_FROM]->(:Origin {name: $region})\n" +
                         "MATCH (p)-[isFrom:IS_FROM]->(region)\n" +
                         "MATCH (p)-[isType:IS_TYPE]->(type)\n" +
                         "RETURN p, collect(isFrom), collect(region), collect(isType), collect(type)\n" +

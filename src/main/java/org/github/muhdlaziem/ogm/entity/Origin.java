@@ -12,7 +12,7 @@ import java.util.Set;
 public class Origin {
 
     @Id
-    public String region;
+    public String name;
 
     @Relationship(value = "IS_FROM", direction = Relationship.INCOMING)
     @JsonbTransient
@@ -21,7 +21,7 @@ public class Origin {
     @Override
     public String toString() {
         return "Origin{" +
-                "region='" + region + '\'' +
+                "region='" + name + '\'' +
                 ", pokemonSet=" + pokemonSet +
                 '}';
     }

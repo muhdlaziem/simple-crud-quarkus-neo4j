@@ -30,7 +30,7 @@ UNWIND [
   {origin: 'Alola'},
   {origin: 'Galar'}
 ] AS row
-CREATE (:Origin {region: row.origin});
+CREATE (:Origin {name: row.origin});
 
 // pokemon
 UNWIND [
@@ -124,7 +124,7 @@ UNWIND [
 ] AS row
 CREATE (p: Pokemon {name: row.name})
 WITH p, row
-MATCH (c: Origin { region: row.origin})
+MATCH (c: Origin { name: row.origin})
 MERGE (p)-[:IS_FROM]->(c)
 WITH p, row
 UNWIND row.type AS type
@@ -136,6 +136,6 @@ CREATE (Laziem: Employee {name:'Laziem', title: 'Junior AI Engineer', started_in
 CREATE (Hazim: Employee {name:'Hazim', title: 'AI Software Engineer', started_in: 2020});
 
 // Add some constraints
+CREATE CONSTRAINT ON (node:Origin) ASSERT (node.name) IS UNIQUE;
 CREATE CONSTRAINT ON (node:Pokemon) ASSERT (node.name) IS UNIQUE;
-CREATE CONSTRAINT ON (node:Origin) ASSERT (node.region) IS UNIQUE;
 CREATE CONSTRAINT ON (node:Type) ASSERT (node.type) IS UNIQUE;
